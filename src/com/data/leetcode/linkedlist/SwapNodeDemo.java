@@ -28,7 +28,6 @@ public class SwapNodeDemo {
 
         ListNode newH = new ListNode(-1);// 新建一张链表
         ListNode cur = head;
-        ListNode cur1 = head;
         ListNode temp = newH;
         if(cur != null && cur.next==null){ //[1]
             return cur;
@@ -39,7 +38,7 @@ public class SwapNodeDemo {
                 temp.next = cur.next;
                 cur.next = cur.next.next;
                 temp.next.next = cur;
-                temp = cur;
+                temp = cur; // 将指针移到原来数交换后的位置
             }
             cur = cur.next;
         }
