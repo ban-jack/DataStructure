@@ -16,7 +16,7 @@
 
 - SwapNodeDemo ---> 两两交换链表中的节点
 
-- reserveListDemo ---> 反转节点
+- reserveListDemo ---> 反转链表
     
 #### Fibonacci ========== 斐波那契数列
     
