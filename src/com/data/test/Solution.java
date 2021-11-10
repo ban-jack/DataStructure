@@ -2,6 +2,7 @@ package com.data.test;
 import com.data.leetcode.linkedlist.ListNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -18,6 +19,7 @@ public class Solution {
         int[] nums = new int[]{-1,0,1,2,-1,-4};
 //        int[] nums = new int[]{-1,0,1,2,-1,-2,-3,3,4};
         List<List<Integer>> lists = new Solution().threeSum(nums);
+
         for (List list:lists){
             for (Object i:list){
                 System.out.print(i+"");
@@ -27,18 +29,32 @@ public class Solution {
     }
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
+        Arrays.sort(nums);
         int length = nums.length;
         for (int i = 0; i < length; i++){
+            if(i>0 && nums[i] == nums[i-1]){
+                continue;
+            }
+            int target = -nums[i];
+            int k = length - 1;
             for (int j = i+1; j < length; j++){
-                int n = -(i+j);
-                for(int k = j + 1; k < length; k++){
-                    List<Integer> list = new ArrayList<>();
-                    if(n == k){
-                        break;
-                    }
-                    list.add(i);
-
+                if(i>j+1 && nums[j] == nums[j-1]){
+                    continue;
                 }
+                while(k > j && nums[k]+nums[j]>target){
+                    k--;
+                }
+                if(k==j){
+                    break;
+                }
+                if(nums[i]+nums[j]+nums[k]==0){
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[j]);
+                    list.add(nums[k]);
+                    lists.add(list);
+                }
+
             }
         }
         return lists;

@@ -25,7 +25,7 @@ public class ThreeSumDemo {
                     continue;
                 }
                 // 同时枚举第三个数 c 需要保证 k指针 在 j指针 的左侧
-                while( k < j && nums[j]+nums[k] > target){
+                while( k > j && nums[j]+nums[k] > target){
                     k--;
                 }
                 // 当指针重合 随着 b 的增加 不会出现 满足 a+b+c=0 且 b<c 的 c 了
