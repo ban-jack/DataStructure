@@ -1,27 +1,25 @@
-package com.data.test;
-import com.data.leetcode.linkedlist.ListNode;
+package com.data.leetcode.fastslowpoint;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 /*
-给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+16. 最接近的三数之和
+给你一个长度为 n 的整数数组 nums 和 一个目标值 target。请你从 nums 中选出三个整数，使它们的和与 target 最接近。
+返回这三个数的和。
+假定每组输入只存在恰好一个解。
 
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/3sum
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+示例 1：
+输入：nums = [-1,2,1,-4], target = 1
+输出：2
+解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2) 。
+
+示例 2：
+输入：nums = [0,0,0], target = 1
+输出：0
+
+https://leetcode-cn.com/problems/3sum-closest/
  */
-public class Solution {
+public class threeSumClosestDemo {
 
-    public static void main(String[] args) {
-
-        int[] nums = new int[]{-1,2,1,-4};
-        int target = 1;
-        int i = new Solution().threeSumClosest(nums, target);
-        System.out.println(i);
-
-    }
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums); // 重点一 排序 -->
         int length = nums.length;
