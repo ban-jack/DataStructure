@@ -31,6 +31,9 @@
 
 - ThreeSumDemo ---> 给定数组 nums，求出其中存在 三个元素相加等于0 且不重复的三元组。
 
+- threeSumClosestDemo ---> 给定数组 和 目标值 target。
+从数组中选出三个整数，使它们的和与 target 最接近。返回这三个数的和。
+
 #### scan =========== 扫描法
 
 - onescanDemo ---> 单次扫描法 返回中毒的总时间
@@ -40,6 +43,7 @@
 - indexOfDemo ---> 实现indexof方法 
 给定两个字符串，找出 字符串1 中 字符串2 出现的第一个位置（下标从 0 开始）
 
+- detectCapitalUseDemo ---> 检测大写字母
 
 
 

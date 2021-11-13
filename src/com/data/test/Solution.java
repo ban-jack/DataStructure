@@ -1,9 +1,9 @@
 package com.data.test;
 import com.data.leetcode.linkedlist.ListNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
@@ -14,48 +14,55 @@ import java.util.List;
  */
 public class Solution {
 
-    public static void main(String[] args) {
 
-        int[] nums = new int[]{-1,2,1,-4};
-        int target = 1;
-        int i = new Solution().threeSumClosest(nums, target);
-        System.out.println(i);
-
+    public static void main(String args[]) {
+        String word = "NBA";
+        boolean b = new Solution().detectCapitalUse(word);
+        System.out.println(b);
     }
-    public int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums); // 重点一 排序 -->
-        int length = nums.length;
-        int res = 10000000; // 设置一个特别大的值 方便比较
-        for (int i = 0; i < length; i++) {
 
-            if (i > 0 && nums[i] == nums[i - 1]) { // 重点二 保证和上一次枚举的数不相等
-                continue;
+    //由26个大写英文字母组成的字符串：^[A-Z]+$
+    //由26个小写英文字母组成的字符串：^[a-z]+$
+    public boolean detectCapitalUse(String word) {
+        int length = word.length();
+        if (length == 1){
+            return true;
+        }
+
+        char[] chars = word.toCharArray();
+        char w = chars[0];
+        char w1 = chars[1];
+
+
+        if( w >= 97 && w <= 122){
+            int i = 1;
+            while(i < length){
+                if(chars[i] < 97 || chars[i] > 122){
+                    return false;
+                }
+                i++;
             }
-            int j = i + 1, k = length - 1; // 重点三 双指针 + 二分法的思想
-            while(j < k){
-                int sum = nums[i] + nums[j] + nums[k];
-                if(sum == target){
-                    return target;
+        }else if (w >= 65 && w <= 90 && w1 >= 65 && w1 <= 90 ){
+            int i = 2;
+            while(i < length){
+                if(chars[i] < 65 || chars[i] > 90){
+                    return false;
                 }
-                if(Math.abs(sum - target) < Math.abs(res - target)){ // 比较绝对值
-                    res = sum;
+                i++;
+            }
+        }else if (w >= 65 && w <= 90 && w1 >= 97 && w1 <= 122 ){
+            int i = 2;
+            while(i < length){
+                if(chars[i] < 97 || chars[i] > 122){
+                    return false;
                 }
-                if(sum > target){  // 如果和大于target k指针向左移动
-                    int k0 = k - 1;
-                    while (j < k0 && nums[k] == nums[k0]){
-                        k0--;
-                    }
-                    k = k0;
-                }
-                if( sum < target){ // 如果和小于target j指针向右移动
-                    int j0 = j + 1;
-                    while (j0 < k && nums[j] == nums[j0]){
-                        j0++;
-                    }
-                    j = j0;
-                }
+                i++;
             }
         }
-        return  res;
+
+
+        return true;
     }
+
+
 }
