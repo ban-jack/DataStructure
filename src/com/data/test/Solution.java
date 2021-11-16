@@ -5,63 +5,48 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*
-给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
 
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/3sum
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- */
 public class Solution {
 
-
-    public static void main(String args[]) {
-        String word = "NBA";
-        boolean b = new Solution().detectCapitalUse(word);
-        System.out.println(b);
+    public static void main(String[] args) {
+//        输入：digits = "23"
+//        输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
+        String d = "23";
+        System.out.println(new Solution().letterCombinations(d));
     }
 
-    //由26个大写英文字母组成的字符串：^[A-Z]+$
-    //由26个小写英文字母组成的字符串：^[a-z]+$
-    public boolean detectCapitalUse(String word) {
-        int length = word.length();
-        if (length == 1){
-            return true;
+    public List<String> letterCombinations(String digits) {
+        List<String> combinations = new ArrayList<String>();
+        if (digits.length() == 0) {
+            return combinations;
         }
+        Map<Character, String> phoneMap = new HashMap<Character, String>() {{
+            put('2', "abc");
+            put('3', "def");
+            put('4', "ghi");
+            put('5', "jkl");
+            put('6', "mno");
+            put('7', "pqrs");
+            put('8', "tuv");
+            put('9', "wxyz");
+        }};
+        backtrack(combinations, phoneMap, digits, 0, new StringBuffer());
+        return combinations;
+    }
 
-        char[] chars = word.toCharArray();
-        char w = chars[0];
-        char w1 = chars[1];
-
-
-        if( w >= 97 && w <= 122){
-            int i = 1;
-            while(i < length){
-                if(chars[i] < 97 || chars[i] > 122){
-                    return false;
-                }
-                i++;
-            }
-        }else if (w >= 65 && w <= 90 && w1 >= 65 && w1 <= 90 ){
-            int i = 2;
-            while(i < length){
-                if(chars[i] < 65 || chars[i] > 90){
-                    return false;
-                }
-                i++;
-            }
-        }else if (w >= 65 && w <= 90 && w1 >= 97 && w1 <= 122 ){
-            int i = 2;
-            while(i < length){
-                if(chars[i] < 97 || chars[i] > 122){
-                    return false;
-                }
-                i++;
+    public void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
+        if (index == digits.length()) {
+            combinations.add(combination.toString());
+        } else {
+            char digit = digits.charAt(index);
+            String letters = phoneMap.get(digit);
+            int lettersCount = letters.length();
+            for (int i = 0; i < lettersCount; i++) {
+                combination.append(letters.charAt(i));
+                backtrack(combinations, phoneMap, digits, index + 1, combination);
+                combination.deleteCharAt(index);
             }
         }
-
-
-        return true;
     }
 
 

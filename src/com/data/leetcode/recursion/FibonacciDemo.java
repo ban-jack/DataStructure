@@ -1,4 +1,4 @@
-package com.data.leetcode.Fibonacci;
+package com.data.leetcode.recursion;
 
 
 public class FibonacciDemo {
