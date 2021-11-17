@@ -38,7 +38,7 @@ public class letterCombinationsDemo {
 //        输入：digits = "23"
 //        输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
         String d = "23";
-        System.out.println(new Solution().letterCombinations(d));
+        System.out.println(new letterCombinationsDemo().letterCombinations(d));
     }
 
     public List<String> letterCombinations(String digits) {

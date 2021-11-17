@@ -36,7 +36,7 @@ public class ThreeSumDemo {
             }
             int target = -nums[i];
             // 重点三 采用双指针的方法 首尾同时进行遍历 --> 减少时间复杂度
-            int k = length - 1;
+            int k = length - 1; // 每当i移动都需要重置k
             // 枚举第二个数 b
             for (int j = i + 1; j < length; j++){
                 if(j > i + 1 && nums[j] == nums[j-1]){
