@@ -38,6 +38,8 @@
 - threeSumClosestDemo ---> 给定数组 和 目标值 target。
 从数组中选出三个整数，使它们的和与 target 最接近。返回这三个数的和。
 
+- FourSumDemo ---> 给定数组 nums，求出其中存在 四个元素相加等于target 且不重复的三元组
+
 #### scan =========== 扫描法
 
 - onescanDemo ---> 单次扫描法 返回中毒的总时间
