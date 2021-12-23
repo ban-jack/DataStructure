@@ -8,41 +8,48 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Solution {
-    //-2147483648
-    //-1
-    // int 范围 -2147483648 - 2147483647
+
     public static void main(String[] args) {
-        int[] nums = new int[]{1,3};
-        int target = 1;
-        System.out.println(searchInsert(nums,target));
+//        int[] nums = new int[]{2,1};
+        int[] nums = new int[]{3,2,1,5,4,3,1};
+        new Solution().nextPermutation(nums);
+        for (int n: nums) {
+            System.out.print(n+" ");
+        }
+    }
+
+    public void nextPermutation(int[] nums) {
+        int length = nums.length;
+        int i = length - 2;
+        while (i >= 0 && nums[i] >= nums[i+1]){
+            i--;
+        }
+        if (i>=0){
+            int j = length - 1;
+            while (j >= 0 && nums[i] >= nums[j]){
+                j--;
+            }
+            swap(nums,i,j);
+        }
+
+        res(nums,i+1, length);
+    }
+
+    public void swap(int[] nums, int i, int j){
+        int temp = 0;
+        temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
 
     }
-    public static int searchInsert(int[] nums, int target) {
-        int length = nums.length;
-        if(target <= nums[0]){
-            return 0;
+    public void res(int[] nums, int j, int len){
+        for (int m = j, n = len -1; m < n; m++,n--){
+            swap(nums,m,n);
         }
-        if(target >= nums[length -1]){
-            return length;
-        }
-        int i = length / 2;
-        int fast = length - 1;
-        int slow = 0;
-        while (slow < fast){
-             if(nums[i] == target){
-                 return i;
-             }else if(target < nums[i]){
-                 fast = i;
-             }else if(target > nums[i]){
-                 slow = i;
-             }
-             i = (fast + 1 -slow) / 2 + slow;
-             if(fast + 1 - slow == 2 ){
-                 return slow + 1;
-             }
-        }
-        return 0;
     }
+
+
+
 }
 
 
