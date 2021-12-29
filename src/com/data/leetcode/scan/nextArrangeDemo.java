@@ -1,4 +1,4 @@
-package com.data.leetcode.fastslowpoint;
+package com.data.leetcode.scan;
 
 /*
 31. 下一个排列

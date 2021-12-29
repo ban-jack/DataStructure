@@ -10,44 +10,75 @@ import java.util.regex.Pattern;
 public class Solution {
 
     public static void main(String[] args) {
-//        int[] nums = new int[]{2,1};
-        int[] nums = new int[]{3,2,1,5,4,3,1};
-        new Solution().nextPermutation(nums);
-        for (int n: nums) {
-            System.out.print(n+" ");
-        }
+        int[] nums = new int[]{4,5,7,9,2};
+//        int[] nums = new int[]{1,2};
+        int target = 11;
+        int search = new Solution().search(nums, target);
+        System.out.println(search);
+
     }
 
-    public void nextPermutation(int[] nums) {
+    public int search(int[] nums, int target) {
         int length = nums.length;
-        int i = length - 2;
-        while (i >= 0 && nums[i] >= nums[i+1]){
-            i--;
-        }
-        if (i>=0){
-            int j = length - 1;
-            while (j >= 0 && nums[i] >= nums[j]){
-                j--;
+        int first = nums[0];
+        if (length < 2){
+            if (first == target){
+                return 0;
+            }else {
+                return -1;
             }
-            swap(nums,i,j);
+        }
+        if (target == nums[length -1]){
+            return length - 1;
+        }
+        int searchpoint = searchPoint(nums,length);
+        int left = 0;
+        int right = nums.length - 1;
+        if (first == target) {
+            return  0;
+        } else if (target == nums[searchpoint]){
+            return searchpoint;
+        } else if (first > target && target > nums[searchpoint]){
+            left = searchpoint;
+        } else if (first < target && target < nums[searchpoint -1]){
+            right = searchpoint - 1;
+        }else if(target == nums[searchpoint - 1]){
+            return searchpoint - 1;
+        }else {
+            return -1;
+        }
+        while (true) {
+            int mid = left + (right + 1 - left) / 2;
+            if (nums[mid] == target){
+                return mid;
+            } else if (nums[mid] > target){
+                right = mid;
+            } else if (nums[mid] < target){
+                left = mid;
+            }
+            if (right + 1 - left <= 2){
+                return -1;
+            }
+
         }
 
-        res(nums,i+1, length);
     }
-
-    public void swap(int[] nums, int i, int j){
-        int temp = 0;
-        temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-
-    }
-    public void res(int[] nums, int j, int len){
-        for (int m = j, n = len -1; m < n; m++,n--){
-            swap(nums,m,n);
+    public int searchPoint(int[] nums,int length){
+        int first = nums[0];
+        int left = 0;
+        int right = length - 1;
+        while (true) {
+            int mid = left + (right + 1 - left) / 2;
+            if (nums[mid] > first){
+                left = mid;
+            }else if (nums[mid] < first){
+                right = mid;
+            }
+            if (right + 1 - left <= 2){
+                return right; // 找到旋转的下标点
+            }
         }
     }
-
 
 
 }
