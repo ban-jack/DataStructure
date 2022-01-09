@@ -65,8 +65,8 @@
 给你旋转后的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。
 使用时间复杂度为 O(log n) 的算法.
 
-
-
+- findElementInArrayDemo --> 在给定一个按照升序排列的整数数组 nums 中查找目标值 target 的第一个和最后一个位置 
+如果数组中不存在目标值 返回 [-1, -1]。
 
 
 

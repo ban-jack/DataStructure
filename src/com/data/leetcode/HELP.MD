@@ -25,6 +25,8 @@
 - letterCombinationsDemo --> 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按任意顺序返回
 
 - timeRequiredToBuyDemo --> 排队买票时间
+
+- CountDemo --> 给定一个正整数 n ，输出外观数列的第 n 项。
  
 #### fastslowpoint ==== 快慢指针
 
