@@ -61,7 +61,7 @@ public class letterCombinationsDemo {
     }
 
     public void backtrack(String digits, int index, Map<Character,String> map, StringBuffer str, List<String> list){
-        if (index == digits.length()){
+        if (index == digits.length()){ // 当index的长度与输入数字长度相等时，输出结果，存储在list集合里面
             list.add(str.toString());
         } else {
             char key = digits.charAt(index);
@@ -70,8 +70,8 @@ public class letterCombinationsDemo {
             for (int i = 0; i < letters.length(); i++){
                 char c = letters.charAt(i);
                 str.append(c);
-                backtrack(digits, index + 1, map, str, list);
-                str.deleteCharAt(index);
+                backtrack(digits, index + 1, map, str, list); // 再次迭代 index 加1
+                str.deleteCharAt(index); // 清空当前索引上的字符，进入下一次循环
             }
         }
 
